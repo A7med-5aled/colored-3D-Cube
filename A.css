@@ -1,0 +1,158 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+
+}
+:root{
+    --number--:150px;
+    
+    
+}
+
+#bttn{
+  
+    position: absolute;
+    top:5%;
+    padding:15px 25px;
+    color:white;
+    font-size: 25px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    background-color:rgb(0, 0, 0);
+    /* transform: translateY(-350px); */
+}
+
+#bttn:hover{
+    
+    background-color: blue;
+}
+input:focus+.parent .front{
+    transform:  translateZ(200px) rotateY(360deg) ;
+}
+input:focus+.parent .back{
+    transform:  translateZ(-200px) rotateY(360deg) ;
+}
+input:focus+.parent .left{
+    transform:  rotateY(270deg) ;
+    left:-200px;
+}
+input:focus+.parent .right{
+    transform:  rotateY(270deg) ;
+    right:-200px;
+}
+input:focus+.parent .top{
+    transform:  rotateX(-270deg) ;
+    top:-200px;
+}
+input:focus+.parent .bottom{
+    transform:  rotateX(270deg) ;
+    bottom:-200px;
+
+}
+
+
+
+
+body{
+    height: 100vh; 
+    background-image:radial-gradient(rgb(230, 218, 218),rgb(0, 0, 0)) ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    perspective:1000px;
+    position: relative;
+}
+
+.parent{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    /* transition: animation 8s ease; */
+    animation:animate 10s infinite;
+    
+  
+   
+}
+.parent::before{
+    content:"";
+    width:100%;
+    height: 100%;
+    position: absolute;
+    top:70%;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    filter: blur(100px);
+    box-shadow: 0 0 150px 100px  rgb(226, 13, 13) 
+    , 0 0 100px 100px blue ;
+
+}
+
+/* .parent:hover{
+    transform:   rotateX(380deg);
+} */
+
+.parent div{
+    background-color: black;
+    width:300px;
+    height: 300px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 35px;
+    position: absolute;
+    border:solid white 2px;
+   transition: all 15s;
+   box-shadow: 0  0 60px 10px blue ,
+   0 0 50px 10px red inset;
+   
+
+}
+
+.front{
+    transform:translateZ(var(--number--));
+    
+}
+.back{
+    transform:translateZ(calc(var(--number--) * -1));
+}
+.left {
+    transform:rotateY(-90deg);
+    /* right:150px; */
+    left:calc(var(--number--) * -1);
+}
+.right{
+    transform:rotateY(90deg);
+    right:calc(var(--number--) * -1);
+}
+.top{
+    transform:rotateX(90deg);
+    top:calc(var(--number--) * -1);
+}
+.bottom{
+    transform:rotateX(-90deg);
+    bottom:calc(var(--number--) * -1);
+}
+
+
+@keyframes animate{
+    0%{
+        transform:rotateX(45deg) rotateY(-45deg);
+    }
+    25%{
+        transform:rotateX(-180deg) rotateY(-145deg);
+    }
+
+    50%{
+        transform:rotateX(360deg) rotateY(45deg);
+    }
+    
+    75%{
+        transform:rotateX(-45deg) rotateY(-360deg);
+    }
+    100%{
+        transform:rotateX(90deg) rotateY(45deg);
+    }
+}
